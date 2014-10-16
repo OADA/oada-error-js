@@ -61,7 +61,7 @@ var names = {
   500: 'Internal Error',
 };
 
-function OADAError(message, code, href, userMessage, detail) {
+function OADAError(message, code, userMessage, href, detail) {
   var error = Error.apply(null, arguments);
 
   // Copy Error's properties

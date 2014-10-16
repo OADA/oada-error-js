@@ -29,7 +29,6 @@ app.set('json spaces', 2);
 app.get('/forbidden', function(req, res, next) {
   next(new OADAError('Example Forbidden OADA Error',
                      OADAError.codes.FORBIDDEN,
-                     null,
                      'You do not have access to this resource.'));
 });
 

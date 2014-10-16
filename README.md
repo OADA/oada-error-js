@@ -39,7 +39,7 @@ $ gulp style
 
 ## API
 
-### OADAError(message, code, href, userMessage, detail)
+### OADAError(message, code, userMessage, href, detail)
 Subclass of Error, it contains enough information to form an [OADA Standard
 Error][oada-standard-error]. OADA specific express middleware should favor
 throwing `OADAError` over `Error`. When paired with the OADAError middleware
@@ -52,13 +52,13 @@ throwing `OADAError` over `Error`. When paired with the OADAError middleware
 `code` {Number/OADAError.codes.\*} The HTTP response code for the error.
 *Default: 500*
 
-`href` {String} A URL to documentation that could help the developer resolve the
-error.  *Default:
-https://github.com/OADA/oada-docs/blob/master/rest-specs/README.md*
-
 `userMessage` {String} A short message that is appropriate to the show the end
 user explaining the error. A client would typically blindly pass this message on
 to user. *Default: Unexpected error. Please try again or contact support*.
+
+`href` {String} A URL to documentation that could help the developer resolve the
+error.  *Default:
+https://github.com/OADA/oada-docs/blob/master/rest-specs/README.md*
 
 `detail` {String, *Optional*} A descriptive error message appropriate for the
 developer to help resolve the issue.

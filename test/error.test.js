@@ -71,42 +71,42 @@ describe('OADAError', function() {
     expect(JSON.parse(JSON.stringify(e))).to.deep.equal(expected);
   });
 
-  it('should accept a title, code, and href', function() {
-    var e = new OADAError('title', OADAError.codes.OK, 'href');
+  it('should accept a title, code, and userMessage', function() {
+    var e = new OADAError('title', OADAError.codes.OK, 'user message');
 
     var expected = clone(defaultExpected);
     expected.title = 'title';
     expected.code = 200;
     expected.status = 'OK';
-    expected.href = 'href';
-
-    expect(JSON.parse(JSON.stringify(e))).to.deep.equal(expected);
-  });
-
-  it('should accept a title, code, href, and userMessage', function() {
-    var e = new OADAError('title', OADAError.codes.OK, 'href', 'user message');
-
-    var expected = clone(defaultExpected);
-    expected.title = 'title';
-    expected.code = 200;
-    expected.status = 'OK';
-    expected.href = 'href';
     expected.userMessage = 'user message';
 
     expect(JSON.parse(JSON.stringify(e))).to.deep.equal(expected);
   });
 
-  it('should accept a title, code, href, userMessage, and detail', function() {
-    var e = new OADAError('title', OADAError.codes.OK, 'href', 'user message',
+  it('should accept a title, code, userMessage, href', function() {
+    var e = new OADAError('title', OADAError.codes.OK, 'user message', 'href');
+
+    var expected = clone(defaultExpected);
+    expected.title = 'title';
+    expected.code = 200;
+    expected.status = 'OK';
+    expected.userMessage = 'user message';
+    expected.href = 'href';
+
+    expect(JSON.parse(JSON.stringify(e))).to.deep.equal(expected);
+  });
+
+  it('should accept a title, code, userMessage, href, and detail', function() {
+    var e = new OADAError('title', OADAError.codes.OK, 'user message', 'href',
       'detail');
 
     var expected = clone(defaultExpected);
     expected.title = 'title';
     expected.code = 200;
     expected.status = 'OK';
+    expected.userMessage = 'user message';
     expected.href = 'href';
     expected.detail = 'detail';
-    expected.userMessage = 'user message';
 
     expect(JSON.parse(JSON.stringify(e))).to.deep.equal(expected);
   });
