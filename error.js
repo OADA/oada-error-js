@@ -120,7 +120,7 @@ module.exports.OADAError = OADAError;
 
 function middleware(cb) {
   return function(err, req, res, next) {
-    if(err.type !== 'OADAError') {
+    if (err.type !== 'OADAError') {
       return next(err);
     }
 
