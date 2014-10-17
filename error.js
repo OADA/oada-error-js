@@ -92,6 +92,13 @@ function OADAError(message, code, userMessage, href, detail) {
     writable: true
   });
 
+  Object.defineProperty(this, 'type', {
+    configurable: true,
+    enumerable: false,
+    value: 'OADAError',
+    writable: true
+  });
+
   this.title = this.message;
 
   this.href = href ||
@@ -113,7 +120,7 @@ module.exports.OADAError = OADAError;
 
 function middleware(cb) {
   return function(err, req, res, next) {
-    if (!(err instanceof OADAError)) {
+    if(err.type !== 'OADAError') {
       return next(err);
     }
 
