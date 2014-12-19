@@ -1,6 +1,6 @@
 {
   "name": "oada-error",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "OADA (openag.io) Standard Error Middleware",
   "keywords": [
     "OADA",
