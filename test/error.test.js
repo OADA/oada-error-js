@@ -138,7 +138,7 @@ describe('middleware', function() {
       });
   });
 
-  it('should continue on non OADAError', function(done) {
+  it('should convert Error to OADAError', function(done) {
     var logSpy = chai.spy(function() {});
     var e = new Error('Test non OADAError middleware callback');
 
@@ -147,16 +147,16 @@ describe('middleware', function() {
       next(e);
     });
     app.use(middleware(logSpy));
-    app.use(function(err, req, res, next) {
-      expect(err).to.deep.equal(e);
-
-      next();
-    });
 
     request(app)
       .get('/error')
-      .expect(500, function() {
-        expect(logSpy).to.not.be.called();
+      .expect(500, function(err, res) {
+        var error = JSON.parse(res.error.text);
+
+        expect(error.code).to.equal(500);
+        expect(error.title).to.equal(e.message);
+        expect(error.href).to.equal(defaultExpected.href);
+        expect(error.userMessage).to.equal(e.message);
 
         done();
       });
@@ -191,6 +191,30 @@ describe('middleware', function() {
       .end(function(err, resp) {
         expect(err).to.not.be.ok;
         expect(resp.body).to.deep.equal(defaultExpected);
+
+        done();
+      });
+  });
+
+  it('should continue on non Error/OADAError', function(done) {
+    var logSpy = chai.spy(function() {});
+    var e = 'Test non OADAError middleware callback';
+
+    var app = express();
+    app.get('/error', function(req, res, next) {
+      next(e);
+    });
+    app.use(middleware(logSpy));
+    app.use(function(err, req, res, next) {
+      expect(err).to.deep.equal(e);
+
+      next(e);
+    });
+
+    request(app)
+      .get('/error')
+      .expect(500, function() {
+        expect(logSpy).to.not.be.called();
 
         done();
       });

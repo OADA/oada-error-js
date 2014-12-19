@@ -101,8 +101,7 @@ function OADAError(message, code, userMessage, href, detail) {
 
   this.title = this.message;
 
-  this.href = href ||
-    'https://github.com/OADA/oada-docs/blob/master/rest-specs/README.md';
+  this.href = href || 'https://github.com/OADA/oada-docs';
 
   if (detail) {
     this.detail = detail;
@@ -120,6 +119,12 @@ module.exports.OADAError = OADAError;
 
 function middleware(cb) {
   return function(err, req, res, next) {
+    if (err.name === 'Error') {
+      err = new OADAError(err.message,
+                          codes.INTERNAL_ERROR,
+                          err.message);
+    }
+
     if (err.type !== 'OADAError') {
       return next(err);
     }

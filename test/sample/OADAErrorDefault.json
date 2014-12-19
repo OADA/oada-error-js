@@ -2,6 +2,6 @@
   "code": 500,
   "status": "Internal Error",
   "title": "",
-  "href": "https://github.com/OADA/oada-docs/blob/master/rest-specs/README.md",
+  "href": "https://github.com/OADA/oada-docs",
   "userMessage": "Unexpected error. Please try again or contact support."
 }
