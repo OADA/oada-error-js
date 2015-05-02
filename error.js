@@ -120,9 +120,8 @@ module.exports.OADAError = OADAError;
 function middleware(cb) {
   return function(err, req, res, next) {
     if (err.name === 'Error') {
-      err = new OADAError(err.message,
-                          codes.INTERNAL_ERROR,
-                          err.message);
+      // Don't expose interal error to client
+      err = new OADAError('Unxpected Error', codes.INTERNAL_ERROR);
     }
 
     if (err.type !== 'OADAError') {
