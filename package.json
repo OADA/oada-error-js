@@ -2,48 +2,54 @@
   "name": "oada-error",
   "version": "1.0.0",
   "description": "OADA (openag.io) Standard Error Middleware",
-  "keywords": [
-    "OADA",
-    "Open Ag Data Alliance",
-    "Standard Error",
-    "Error"
-  ],
-  "homepage": "https://github.com/OADA/oada-error-js",
-  "bugs": {
-    "url": "https://github.com/OADA/oada-error-js/issues"
-  },
-  "license": "Apache-2.0",
-  "author": "Andrew Balmos <abalmos@purdue.edu>",
   "main": "error.js",
+  "scripts": {
+    "test": "mocha",
+    "cover": "istanbul cover _mocha",
+    "lint": "jshint --reporter node_modules/jshint-stylish/stylish.js .",
+    "style": "jscs .",
+    "clean": "rm -rf ./coverage"
+  },
+  "pre-commit": [
+    "lint",
+    "style",
+    "test"
+  ],
+  "directories": {
+    "test": "test"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/OADA/oada-error-js.git"
   },
-  "engines": {
-    "node": ">=0.10"
+  "keywords": [
+    "oada",
+    "Open Ag Data Alliance",
+    "Standard Error",
+    "Error"
+  ],
+  "author": {
+    "name": "Andrew Balmos",
+    "email": "andrew@balmos.org"
   },
-  "scripts": {
-    "test": "./node_modules/.bin/_mocha -w",
-    "cover": "./node_modules/.bin/istanbul cover --preload-sources -x gulpfile.js -x examples/*.js node_modules/.bin/_mocha -- -R spec",
-    "clean": "rm -rf ./coverage",
-    "minimal": "node examples/minimal.js"
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/OADA/oada-error-js/issues"
   },
+  "homepage": "https://github.com/OADA/oada-error-js",
   "dependencies": {
     "debug": "^2.0.0"
   },
   "devDependencies": {
-    "chai": "~1.9.1",
+    "chai": "^2.3.0",
     "chai-spies": "^0.5.1",
-    "coveralls": "~2.11.2",
     "express": "^4.9.6",
-    "gulp": "3.8.8",
-    "gulp-jscs": "~1.2.0",
-    "gulp-jshint": "~1.8.4",
-    "istanbul": "~0.3.2",
-    "jscs": "~1.7.3",
-    "jshint": "~2.5.6",
-    "jshint-stylish": "~1.0.0",
-    "mocha": "~1.21.4",
+    "istanbul": "^0.3.13",
+    "jscs": "^1.13.1",
+    "jshint": "^2.7.0",
+    "jshint-stylish": "^1.0.1",
+    "mocha": "^2.2.4",
+    "pre-commit": "^1.0.7",
     "supertest": "^0.14.0"
   }
 }

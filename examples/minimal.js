@@ -27,14 +27,14 @@ app.set('json spaces', 2);
 
 // Always throw an error for this example
 app.get('/forbidden', function(req, res, next) {
-  next(new OADAError('Example Forbidden OADA Error',
-                     OADAError.codes.FORBIDDEN,
-                     'You do not have access to this resource.'));
+    next(new OADAError('Example Forbidden OADA Error',
+                        OADAError.codes.FORBIDDEN,
+                        'You do not have access to this resource.'));
 });
 
 // Log OADA errors
 function logError(err) {
-  debug('OADA Error: ' + err);
+    debug('OADA Error: ' + err);
 }
 
 // Mount OADA error middleware
@@ -42,7 +42,7 @@ app.use(errorHandler(logError));
 
 // Start server on port PORT env or 3000
 var server = app.listen(process.env.port || 3000, function() {
-  console.log('OADA Example error running at ' +
-              server.address().address + ':' + server.address().port +
-              '/forbidden');
+    console.log('OADA Example error running at ' +
+                server.address().address + ':' + server.address().port +
+                '/forbidden');
 });
