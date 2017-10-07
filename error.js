@@ -14,7 +14,7 @@
  */
 'use strict';
 
-var debug = require('debug')('oada-error');
+var debug = require('debug-logger')('oada-error');
 
 var codes = {
     OK: 200,
@@ -119,8 +119,9 @@ module.exports.OADAError = OADAError;
 
 function middleware(cb) {
     return function(err, req, res, next) {
+        debug.trace('**** OADAError: ',err);
         if (err.name === 'Error') {
-            debug(err);
+            debug.error(err);
 
             // Don't expose interal error to client
             err = new OADAError('Unexpected Error', codes.INTERNAL_ERROR);
@@ -134,7 +135,7 @@ function middleware(cb) {
             cb(err);
         }
 
-        debug('OADAError: ' + err);
+        debug.error('OADAError: ' + err);
 
         res.status(err.code).json(err);
     };

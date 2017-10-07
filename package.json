@@ -38,7 +38,8 @@
   },
   "homepage": "https://github.com/OADA/oada-error-js",
   "dependencies": {
-    "debug": "^2.0.0"
+    "debug": "^2.0.0",
+    "debug-logger": "^0.4.1"
   },
   "devDependencies": {
     "chai": "^2.3.0",
