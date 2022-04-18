@@ -1,0 +1,28 @@
+{
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "files.exclude": {
+    ".history": true,
+    ".test": true,
+    "dist": true,
+    "coverage": true,
+    ".vim": true,
+    "node_modules": true,
+    ".dccache": true,
+    ".pnp.*": true,
+    "*.tsbuildinfo": true,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  },
+  "eslint.nodePath": ".yarn/sdks",
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "cSpell.words": ["lcov", "sonarjs"]
+}
